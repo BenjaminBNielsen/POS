@@ -14,8 +14,7 @@ public class Product {
     private Type type;
     
     public Product(Type type){
-        this.type = type;
-        
+        this.type = type;    
     }
 
     public Type getType() {
