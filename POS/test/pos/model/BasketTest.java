@@ -59,10 +59,10 @@ public class BasketTest {
         //1 product med expeced price
         
         System.out.println("calcPrice");
-        Basket instance = new Basket();
-        instance.addProduct(1);
+        Basket basketInstance = new Basket();
+        basketInstance.addProduct(1);
         int expResult = 300;
-        int actResult = instance.calcPrice();
+        int actResult = basketInstance.calcPrice();
         assertEquals("could not calc price for one item", expResult, actResult);
     }
     /**
@@ -71,12 +71,12 @@ public class BasketTest {
     @Test
     public void testCalcPriceMultipleItems() {
         System.out.println("calcPrice");
-        Basket instance = new Basket();
-        instance.addProduct(1);
-        instance.addProduct(1);
-        instance.addProduct(1);
+        Basket basketInstance = new Basket();
+        basketInstance.addProduct(1);
+        basketInstance.addProduct(1);
+        basketInstance.addProduct(1);
         int expResult = 900;
-        int actResult = instance.calcPrice();
+        int actResult = basketInstance.calcPrice();
         assertEquals("could not calc price for 3 items",expResult, actResult);
     }
 

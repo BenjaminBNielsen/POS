@@ -12,9 +12,13 @@ import java.util.ArrayList;
  * @author chrisjust
  */
 public class Storage {
-
+    private static Storage instance;
+    
     public static Storage getInstance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (instance == null){
+            instance = new Storage();
+        }
+        return instance;
     }
     private ArrayList<Product> products = new ArrayList<>();
     
@@ -32,7 +36,7 @@ public class Storage {
     
     public Product getProduct(int id){
         for (int i = 0; i < products.size(); i++) {
-            if (id == products.get(i).getId()){
+            if (id == products.get(i).getType().getId()){
                 return products.get(i);
             }
            
@@ -41,6 +45,6 @@ public class Storage {
     }
 
     public void add(Type type) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        products.add(new Product(type));
     }
 }
