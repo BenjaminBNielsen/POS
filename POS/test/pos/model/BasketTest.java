@@ -59,7 +59,6 @@ public class BasketTest {
         Basket basketInstance = new Basket();
         basketInstance.addProduct(1);
         int expResult = 300;
-        Basket basketInstance = new Basket();
         int actResult = basketInstance.calcPrice();
         assertEquals("could not calc price for one item", expResult, actResult);
     }

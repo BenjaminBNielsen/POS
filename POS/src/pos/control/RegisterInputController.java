@@ -37,6 +37,12 @@ public class RegisterInputController extends BorderPane implements Initializable
         }
         productInput.clear();
     }
+    @FXML
+    public void changeScene(ActionEvent event){
+        BasketOverviewController bic = new BasketOverviewController();
+        this.getScene().setRoot(bic);
+              
+    }
 
     public RegisterInputController() {
         try{            
