@@ -26,7 +26,7 @@ import pos.model.Type;
  */
 public class BasketTest {
     
-    Type agurkType = new Type(300, 1 ,  "agurk");
+    Type agurkType = new Type(300, 1 , "agurk");
     Storage storage = Storage.getInstance();
     
     public BasketTest() {
