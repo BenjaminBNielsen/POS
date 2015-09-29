@@ -18,7 +18,9 @@ import static org.junit.Assert.*;
  * @author chrisjust
  */
 public class StorageTest {
-    
+    private Type testType = new Type(500, 1, "testType");
+    private Storage storage = Storage.getInstance();
+    private ArrayList<Product> productList = storage.getProducts();
     public StorageTest() {
     }
     
@@ -44,11 +46,11 @@ public class StorageTest {
     @Test
     public void testGetInstance() {
         System.out.println("getInstance");
-        Storage expResult = null;
-        Storage result = Storage.getInstance();
+        Storage expResult = Storage.getInstance();
+        Storage result = storage;
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -57,12 +59,14 @@ public class StorageTest {
     @Test
     public void testGetProducts() {
         System.out.println("getProducts");
-        Storage storageInstance = Storage.getInstance();
-        ArrayList<Product> expResult = null;
-        ArrayList<Product> result = storageInstance.getProducts();
+        ArrayList<Product> expResult = productList;
+        
+        storage.add(new Type(100,1,"Bananer"));
+        
+        ArrayList<Product> result = storage.getProducts();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,11 +75,10 @@ public class StorageTest {
     @Test
     public void testSetProducts() {
         System.out.println("setProducts");
-        ArrayList<Product> products = null;
-        Storage instance = Storage.getInstance();
-        instance.setProducts(products);
+        ArrayList<Product> products = productList;
+        storage.setProducts(products);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       // fail("The test case is a prototype.");
     }
 
     /**
@@ -84,13 +87,20 @@ public class StorageTest {
     @Test
     public void testGetProduct() {
         System.out.println("getProduct");
-        int id = 0;
+        //int id = 1;       
         Storage instance = Storage.getInstance();
-        Product expResult = null;
-        Product result = instance.getProduct(id);
+        Type type = new Type(100,1,"Agurk");
+        
+        instance.add(type);
+        
+        int expResult = 100;
+        
+        int result = instance.getProduct(1).getType().getPrice();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+    
+        
     }
 
     /**
@@ -99,11 +109,12 @@ public class StorageTest {
     @Test
     public void testAdd() {
         System.out.println("add");
-        Type type = null;
+        Type type = new Type(100,1,"Agurk");
         Storage instance = Storage.getInstance();
         instance.add(type);
+        
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }
