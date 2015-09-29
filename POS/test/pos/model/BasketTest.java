@@ -6,13 +6,16 @@
 package pos.model;
 
 import java.util.ArrayList;
-import pos.model.Basket;
+import static junit.framework.Assert.assertEquals;
 import org.junit.After;
+import pos.model.Basket;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import pos.model.Product;
 import pos.model.Storage;
 import pos.model.Type;
@@ -25,7 +28,6 @@ public class BasketTest {
     
     Type agurkType = new Type(300, 1 ,  "agurk");
     Storage storage = Storage.getInstance();
-    private ArrayList<Product> products = new ArrayList<>();
     
     public BasketTest() {
     }
@@ -54,11 +56,6 @@ public class BasketTest {
      */
     @Test
     public void testCalcPriceOneItem() {
-        //storage
-        
-        //1 product med expeced price
-        
-        System.out.println("calcPrice");
         Basket basketInstance = new Basket();
         basketInstance.addProduct(1);
         int expResult = 300;
@@ -70,7 +67,6 @@ public class BasketTest {
      */
     @Test
     public void testCalcPriceMultipleItems() {
-        System.out.println("calcPrice");
         Basket basketInstance = new Basket();
         basketInstance.addProduct(1);
         basketInstance.addProduct(1);
@@ -79,6 +75,4 @@ public class BasketTest {
         int actResult = basketInstance.calcPrice();
         assertEquals("could not calc price for 3 items",expResult, actResult);
     }
-
-    
 }
