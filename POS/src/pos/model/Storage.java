@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pos;
+package pos.model;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,10 @@ import java.util.ArrayList;
  * @author chrisjust
  */
 public class Storage {
+
+    public static Storage getInstance() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private ArrayList<Product> products = new ArrayList<>();
     
     public Storage(){
@@ -34,5 +38,9 @@ public class Storage {
            
         }
         return null;
+    }
+
+    public void add(Type type) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

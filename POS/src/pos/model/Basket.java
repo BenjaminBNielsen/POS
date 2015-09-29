@@ -1,4 +1,4 @@
-package pos;
+package pos.model;
 
 
 import java.util.ArrayList;
@@ -15,13 +15,24 @@ import java.util.ArrayList;
  */
 public class Basket {
     
+    private Storage storage = Storage.getInstance();
     private ArrayList<Product> items = new ArrayList<>();
     
+    /**
+     * Calculates the total cost of the items in the basket
+     * @return the total price
+     */
+    
     public int calcPrice(){
-        return 0;
+        int total = 0;
+        for (Product item : items) {
+            total += item.getType().getPrice();
+        }
+        return total;
     }    
     
     public void addProduct(int id){
+        items.add(storage.getProduct(id));
         
     }
 }
