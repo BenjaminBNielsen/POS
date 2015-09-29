@@ -15,6 +15,8 @@ import pos.model.Basket;
  */
 public class Register {
     
+    private int cashHolding = 0;
+    
     private Basket basket = new Basket();
     
     /**
@@ -31,5 +33,18 @@ public class Register {
     public Basket getBasket() {
         return basket;
     }
-   
+    public void addToCashHolding(int amount){
+        this.cashHolding += amount;
+    }
+    public void subtractFromCashHolding(int amount){
+        this.cashHolding -= amount;
+    }
+    public void pay(){
+        addToCashHolding(this.basket.calcPrice());
+    }
+    public int showCashHolding() {
+    return this.cashHolding;
 }
+}
+
+    
