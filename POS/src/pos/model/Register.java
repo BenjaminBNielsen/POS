@@ -27,4 +27,9 @@ public class Register {
     public int calcReturn(int input){
         return input - basket.calcPrice();
     } 
+
+    public Basket getBasket() {
+        return basket;
+    }
+   
 }
