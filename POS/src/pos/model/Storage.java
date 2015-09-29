@@ -22,8 +22,11 @@ public class Storage {
     }
     private ArrayList<Product> products = new ArrayList<>();
     
-    public Storage(){
+    private Storage(){
         
+    }
+    public static Storage getTestInstance(){
+        return new Storage();
     }
 
     public ArrayList<Product> getProducts() {
@@ -47,4 +50,10 @@ public class Storage {
     public void add(Type type) {
         products.add(new Product(type));
     }
+    
+    public void removeProduct(Product product){
+    products.remove(product);
+    }
+    
+
 }

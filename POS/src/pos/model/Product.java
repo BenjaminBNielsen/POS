@@ -24,8 +24,4 @@ public class Product {
     public void setType(Type type) {
         this.type = type;
     }
-
-    int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

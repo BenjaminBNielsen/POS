@@ -23,19 +23,15 @@ public class StorageTest {
     private ArrayList<Product> productList = storage.getProducts();
     public StorageTest() {
     }
-    
     @BeforeClass
     public static void setUpClass() {
     }
-    
     @AfterClass
     public static void tearDownClass() {
     }
-    
     @Before
     public void setUp() {
     }
-    
     @After
     public void tearDown() {
     }
@@ -60,9 +56,7 @@ public class StorageTest {
     public void testGetProducts() {
         System.out.println("getProducts");
         ArrayList<Product> expResult = productList;
-        
         storage.add(new Type(100,1,"Bananer"));
-        
         ArrayList<Product> result = storage.getProducts();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -78,7 +72,6 @@ public class StorageTest {
         ArrayList<Product> products = productList;
         storage.setProducts(products);
         // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
     }
 
     /**
@@ -90,31 +83,80 @@ public class StorageTest {
         //int id = 1;       
         Storage instance = Storage.getInstance();
         Type type = new Type(100,1,"Agurk");
-        
         instance.add(type);
-        
         int expResult = 100;
-        
         int result = instance.getProduct(1).getType().getPrice();
-        
         assertEquals(expResult, result);
-        
+    }
+//    /**
+//     * Test of add method, of class Storage.
+//     */
+//    @Test
+//    public void testAdd() {
+//        System.out.println("add");
+//        Type type = new Type(100,1,"Agurk");
+//        Storage instance = Storage.getInstance();
+//        instance.add(type);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
     
-        
-    }
-
-    /**
-     * Test of add method, of class Storage.
-     */
     @Test
-    public void testAdd() {
-        System.out.println("add");
-        Type type = new Type(100,1,"Agurk");
-        Storage instance = Storage.getInstance();
-        instance.add(type);
-        
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+    public void testRemoveOneItem(){
+        Storage storage = Storage.getTestInstance();
+        Type typeBanana = new Type(50, 1, "Banana");
+        Type typeCucumber  = new Type(33, 2, "Cucumber");
+        storage.add(typeBanana);
+        storage.add(typeCucumber);
+        storage.removeProduct(storage.getProduct(2));
+        int expResult = 1;
+        int actresult = storage.getProducts().size();
+        assertEquals(expResult, actresult);
     }
+    @Test
+    public void testRemoveOneItem2(){
+        Storage storage = Storage.getTestInstance();
+        Type typeBanana = new Type(50, 1, "Banana");
+        Type typeCucumber  = new Type(33, 2, "Cucumber");
+        storage.add(typeBanana);
+        storage.add(typeCucumber);
+        storage.removeProduct(storage.getProduct(2));
+        String expResult = "Banana";
+        String actreslut = storage.getProduct(1).getType().getDesc();
+        assertEquals(expResult, actreslut);
+    }
+    @Test
+    public void testRemoveAllProducts(){
+        Storage storage = Storage.getTestInstance();
+        Type typeBanana = new Type(50, 1, "Banana");
+        Type typeCucumber  = new Type(33, 2, "Cucumber");
+        storage.add(typeBanana);
+        storage.add(typeCucumber);
+        storage.removeProduct(storage.getProduct(1));
+        storage.removeProduct(storage.getProduct(2));
+        int expResult = 0;
+        int actresult = storage.getProducts().size();
+        assertEquals(expResult, actresult);
+    }
+    @Test
+    public void testRemoveProductsNotInStorage(){
+        Storage storage = Storage.getTestInstance();
+        Product testProduct = new Product(new Type(1,1,"testDesc"));
+        storage.removeProduct(testProduct);
+        int expResult = 0;
+        int actresult = storage.getProducts().size();
+        assertEquals(expResult, actresult);
+    }
+     @Test
+    public void testRemoveOneProductOutOfTwo(){
+        Storage storage = Storage.getTestInstance();
+        Type typeBanana = new Type(50, 1, "Banana");
+        storage.add(typeBanana);
+        storage.add(typeBanana);
+        storage.removeProduct(storage.getProduct(1));
+        int expResult = 1;
+        int actresult = storage.getProducts().size();
+        assertEquals(expResult, actresult);
+    }     
     
 }
