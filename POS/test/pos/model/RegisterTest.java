@@ -42,23 +42,69 @@ public class RegisterTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of calcReturn method, of class Register.
-     */
-    @Test
-    public void testCalcReturn() {
-        int input = 600;
-        int expResult = input - testType.getPrice();
-        int actResult = testRegister.calcReturn(input);
-        assertEquals("Did not correctly calc return", expResult, actResult);
+//    /**
+//     * Test of calcReturn method, of class Register.
+//     */
+//    @Test
+//    public void testCalcReturn() {
+//        int input = 600;
+//        int expResult = input - testType.getPrice();
+//        int actResult = testRegister.calcReturn(input);
+//        assertEquals("Did not correctly calc return", expResult, actResult);
+//    }
+//    
+//    @Test
+//    public void testCalcReturnBelowPrice() {
+//        int input = 300;
+//        int expResult = input - testType.getPrice() ;
+//        int result = testRegister.calcReturn(input);
+//        assertEquals("Could not calc a proper return for smaller input than basketprice",expResult, result);
+//    }
+//    @Test
+//    public void testAddToCashHolding() {
+//        Register register = new Register();
+//        register.addToCashHolding(100);
+//        int expResult = 100;
+//        int result = register.showCashHolding();
+//        assertEquals("Yo man how much money you got",expResult, result);
+//    }
+//    @Test
+//    public void testSubstractFromCashHolding() {
+//        Register register = new Register();
+//        register.addToCashHolding(100);
+//        register.subtractFromCashHolding(50);
+//        int expResult = 50;
+//        int result = register.showCashHolding();
+//        assertEquals("Yo man how much money you lost",expResult, result);
+//    }
+@Test
+    public void testPayCashHolding() {
+        Register register = new Register();
+        Storage storage = Storage.getTestInstance();
+        Type banana = new Type(150, 1, "banana");
+        Type cucumber = new Type(200, 2, "banana");
+        storage.add(banana);
+        storage.add(banana);
+        storage.add(banana);
+        storage.add(banana);
+        storage.add(cucumber);
+        storage.add(cucumber);
+        storage.add(cucumber);
+        storage.add(cucumber);
+        register.addToCashHolding(1000);
+        System.out.println(register.getBasket().calcPrice());
+        register.getBasket().addProduct(1);
+        System.out.println(register.getBasket().calcPrice());
+        register.getBasket().addProduct(1);
+        System.out.println(register.getBasket().calcPrice());
+        register.getBasket().addProduct(2);
+        System.out.println(register.getBasket().calcPrice());
+        register.getBasket().addProduct(2);
+        System.out.println(register.getBasket().calcPrice());
+        int expResult = 1700;
+        register.pay();
+        int actResult = register.showCashHolding();
+        assertEquals("Yo man how much money you lost",expResult, actResult);
     }
-    
-    @Test
-    public void testCalcReturnBelowPrice() {
-        int input = 300;
-        int expResult = input - testType.getPrice() ;
-        int result = testRegister.calcReturn(input);
-        assertEquals("Could not calc a proper return for smaller input than basketprice",expResult, result);
-    }
-    
 }
+
