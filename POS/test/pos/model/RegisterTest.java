@@ -18,6 +18,10 @@ import static org.junit.Assert.*;
  */
 public class RegisterTest {
     
+    private Type testType = new Type(300, 1, "testType");
+    private Register testRegister = new Register();
+    private Storage storage = Storage.getInstance();
+    
     public RegisterTest() {
     }
     
@@ -31,6 +35,8 @@ public class RegisterTest {
     
     @Before
     public void setUp() {
+        storage.add(testType);
+        testRegister.getBasket().addProduct(1);
     }
     
     @After
@@ -43,11 +49,21 @@ public class RegisterTest {
     @Test
     public void testCalcReturn() {
         System.out.println("calcReturn");
-        int input = 0;
-        Register instance = new Register();
-        int expResult = 0;
-        int result = instance.calcReturn(input);
-        assertEquals(expResult, result);
+        int input = 400;
+        testType.setPrice(300);
+        int expResult = 100;
+        int actResult = testRegister.calcReturn(input);
+        assertEquals("Did not correctly calc return", expResult, actResult);
+    }
+    
+    @Test
+    public void testCalcReturnBelowPrice() {
+        System.out.println("calcReturn");
+        int input = 300;
+        testType.setPrice(500);
+        int expResult = -200;
+        int result = testRegister.calcReturn(input);
+        assertEquals("Could not calc a proper return for smaller input than basketprice",expResult, result);
     }
     
 }
