@@ -8,35 +8,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<fx:root maxWidth="1.7976931348623157E308" prefHeight="50.0" spacing="10.0" type="HBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<fx:root maxWidth="1.7976931348623157E308" prefHeight="50.0" spacing="10.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="productDesc" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
          <font>
             <Font size="24.0" />
          </font>
       </TextField>
-      <TextField maxWidth="1.7976931348623157E308" prefWidth="70.0" promptText="1">
+      <TextField fx:id="amountField" maxWidth="1.7976931348623157E308" prefWidth="120.0" promptText="1">
          <font>
             <Font size="24.0" />
          </font>
       </TextField>
-      <TextField maxWidth="1.7976931348623157E308" prefWidth="110.0" promptText="0">
+      <TextField fx:id="priceField" maxWidth="1.7976931348623157E308" prefWidth="140.0" promptText="0">
          <font>
             <Font size="24.0" />
          </font>
       </TextField>
-      <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="-">
+      <Button mnemonicParsing="false" onAction="#decrementItem" prefHeight="50.0" prefWidth="50.0" text="-">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="+">
+      <Button mnemonicParsing="false" onAction="#incrementItem" prefHeight="50.0" prefWidth="50.0" text="+">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="X">
+      <Button mnemonicParsing="false" onAction="#removeItem" prefHeight="50.0" prefWidth="50.0" text="X">
          <font>
             <Font size="24.0" />
          </font>

@@ -41,7 +41,7 @@ public class BasketOverviewController extends BorderPane implements Initializabl
     @FXML
     public void addToBasket(ActionEvent event){
         Type type = new Type(100,1,"Banana");
-        BasketItem item = new BasketItem(type);
+        BasketItem item = new BasketItem(type, this.productList);
         productList.getItems().add(item);
     }
     
@@ -51,6 +51,11 @@ public class BasketOverviewController extends BorderPane implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }   
+    
+    public void removeItem(BasketItem basketItem){
+        productList.getItems().remove(basketItem);
+    }
+    
     
 }
