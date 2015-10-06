@@ -30,6 +30,9 @@ public class Basket {
         }
         return total;
     }    
+    public void setStorage(Storage storage){
+        this.storage = storage;
+    }
     
     public void addProduct(int id){
         items.add(storage.getProduct(id));
