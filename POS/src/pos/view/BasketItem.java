@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import pos.control.BasketOverviewController;
 import pos.model.Type;
 
 /**
@@ -29,19 +30,25 @@ public class BasketItem extends HBox {
 
     public static final String AMOUNT_SUB = " stk";
     public static final String PRICE_SUB = " ,-";
-    private ListView<BasketItem> parentList;
+    private BasketOverviewController controller;
+    private Type type;
+
+    public Type getType() {
+        return type;
+    }
 
     @FXML
     private TextField productDesc, priceField, amountField;
     private SimpleStringProperty amountProperty;
     private SimpleStringProperty priceProperty;
 
-    public BasketItem(Type type, ListView<BasketItem> parentList){
+    public BasketItem(Type type, BasketOverviewController controller) {
         this(type);
-        this.parentList = parentList;
+        this.controller = controller;
     }
-    
+
     public BasketItem(Type type) {
+        this.type = type;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/basket_item.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -52,22 +59,23 @@ public class BasketItem extends HBox {
         }
         this.amountProperty = new SimpleStringProperty(1 + AMOUNT_SUB);
         this.priceProperty = new SimpleStringProperty(type.getPrice() + PRICE_SUB);
-        
 
         priceField.promptTextProperty().bindBidirectional(priceProperty);
         priceField.setDisable(true);
 
         productDesc.setText(type.getId() + " - " + type.getDesc());
 
-        
         amountProperty.addListener(e -> {
             priceProperty.set(getAmount() * type.getPrice() + PRICE_SUB);
+            controller.getRegister().getBasket().setAmount(getAmount(), type);
+            System.out.println(controller.getRegister().getBasket().getItems());
         });
         amountField.promptTextProperty().bindBidirectional(amountProperty);
         amountField.setOnAction(e -> {
             amountProperty.set(amountField.getText() + AMOUNT_SUB);
             amountField.setText("");
             amountField.getParent().requestFocus();
+            
         });
 
     }
@@ -77,7 +85,7 @@ public class BasketItem extends HBox {
     }
 
     public void incrementAmount() {
-        //this.amountProperty.;
+        this.amountProperty.set((getAmount() + 1) + AMOUNT_SUB);
     }
 
     public int getAmount() {
@@ -100,6 +108,6 @@ public class BasketItem extends HBox {
 
     @FXML
     private void removeItem(ActionEvent event) {
-        this.parentList.getItems().remove(this);
+        this.controller.getProductList().getItems().remove(this);
     }
 }

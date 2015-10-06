@@ -23,6 +23,25 @@ public class Storage {
     private ArrayList<Product> products = new ArrayList<>();
     
     private Storage(){
+        Type t = new Type(100, 1 ,"Banana");
+        
+        for (int i = 0; i < 100; i++) {
+            this.add(t);
+        }
+        t = new Type(150, 2, "Cucumber");
+        for (int i = 0; i < 200; i++) {
+            this.add(t);
+        }
+        t = new Type(300, 3, "Kiwi");
+        for (int i = 0; i < 5; i++) {
+            this.add(t);
+        }
+        t = new Type(1000, 4, "Avokado");
+        for (int i = 0; i < 25; i++) {
+            this.add(t);
+        }
+        t = new Type(-500, 5, "Rabat");
+        this.add(t);
         
     }
     public static Storage getTestInstance(){
@@ -50,7 +69,12 @@ public class Storage {
     public void add(Type type) {
         products.add(new Product(type));
     }
-    
+
+    public void add(Type... type) {
+        for (Type type1 : type) {
+            products.add(new Product(type1));
+        }
+    }
     public void removeProduct(Product product){
     products.remove(product);
     }
